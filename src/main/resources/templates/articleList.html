@@ -30,7 +30,7 @@
                     <p> 조회수: <span th:text="${item.viewCount}"></span> </p>
                     <p> 좋아요: <span th:text="${item.likeCount}"></span> </p>
                     <a th:href="@{/articles/{id}(id=${item.id})}" class="btn btn-primary">보러가기</a>
-                    <a th:href="@{/articles/{id}(id=${item.id})}" class="btn btn-secondary">좋아요</a>
+                    <a th:href="@{/articles/like/{id}(id=${item.id})}" class="btn btn-secondary">좋아요</a>
                 </div>
             </div>
             <br>

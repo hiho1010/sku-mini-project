@@ -45,6 +45,14 @@ public class BlogViewController {
         return "article";
     }
 
+    @GetMapping("/articles/like/{id}")
+    public String like(@PathVariable Long id, Model model) {
+        Article article = blogService.getLikeCount(id);
+        article.increaseLikeCount();
+        model.addAttribute("article", new ArticleViewResponse(article));
+        return "redirect:/articles";
+    }
+
     @GetMapping("/new-article")
     public String newArticle(@RequestParam(required = false) Long id, Model model) {
         if (id == null) {

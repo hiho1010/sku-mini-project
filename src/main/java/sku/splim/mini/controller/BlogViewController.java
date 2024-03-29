@@ -20,24 +20,22 @@ public class BlogViewController {
     private final BlogService blogService;
 
     @GetMapping("/articles")
-    public String getArticles(Model model) {
+    public String getArticles(Model model, @RequestParam(value="kw", defaultValue = "") String kw) {
         List<ArticleListViewResponse> articles = blogService.findAll()
                 .stream()
                 .map(ArticleListViewResponse::new)
                 .toList();
         model.addAttribute("articles", articles);
-
+        model.addAttribute("kw", kw);
         return "articleList";
     }
 
     @GetMapping("/articles/{id}")
     public String getArticle(@PathVariable Long id, Model model) {
-        Article article = blogService.findById(id);
+        Article article = blogService.getViewCount(id);
         model.addAttribute("article", new ArticleViewResponse(article));
-
         return "article";
     }
-
 
     @GetMapping("/new-article")
     public String newArticle(@RequestParam(required = false) Long id, Model model) {
@@ -47,7 +45,6 @@ public class BlogViewController {
             Article article = blogService.findById(id);
             model.addAttribute("article", new ArticleViewResponse(article));
         }
-
         return "newArticle";
     }
 }

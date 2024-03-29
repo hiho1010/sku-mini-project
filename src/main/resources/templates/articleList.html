@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>블로그 글 목록</title>
@@ -15,6 +15,14 @@
         <button type="button" id="create-btn"
                 th:onclick="|location.href='@{/new-article}'|"
                 class="btn btn-secondary btn-sm mb-3">글 등록</button>
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="input-group">
+                    <input type="text" id="search_kw" class="form-control" th:value="${kw}">
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
+                </div>
+            </div>
+        </div>
         <div class="row-6" th:each="item : ${articles}">
             <div class="card">
                 <div class="card-header" th:text="${item.id}">
@@ -22,12 +30,23 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${item.title}"></h5>
                     <p class="card-text" th:text="${item.content}"></p>
+                    <p> 조회수: <span th:text="${item.viewCount}"></span> </p>
                     <a th:href="@{/articles/{id}(id=${item.id})}" class="btn btn-primary">보러가기</a>
                 </div>
             </div>
             <br>
         </div>
+        <form th:action="@{/articles}" method="get" id="searchForm">
+            <input type="hidden" id="kw" name="kw" th:value="${kw}">
+        </form>
     </div>
 
     <script src="/js/article.js"></script>
+    <script layout:fragment="script" type='text/javascript'>
+        const btn_search = document.getElementById("btn_search");
+        btn_search.addEventListener('click', function() {
+            document.getElementById('kw').value = document.getElementById('search_kw').value;
+            document.getElementById('searchForm').submit();
+        });
+    </script>
 </body>

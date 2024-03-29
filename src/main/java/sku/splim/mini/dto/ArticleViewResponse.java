@@ -2,11 +2,7 @@ package sku.splim.mini.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-<<<<<<< HEAD
-import me.shinsunyoung.springbootdeveloper.domain.Article;
-=======
 import sku.splim.mini.domain.Article;
->>>>>>> feature
 
 import java.time.LocalDateTime;
 

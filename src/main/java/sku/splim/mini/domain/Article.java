@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -28,6 +29,10 @@ public class Article {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @CreatedBy
+    @Column(name = "view", nullable = false)
+    private int view = 0;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -46,5 +51,9 @@ public class Article {
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void increaseView() {
+        this.view++;
     }
 }

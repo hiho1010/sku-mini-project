@@ -42,4 +42,11 @@ public class BlogService {
 
         return article;
     }
+
+    public void like(long id) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+
+        article.increaseLike();
+    }
 }

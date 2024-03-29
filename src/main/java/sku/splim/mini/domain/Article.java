@@ -30,8 +30,8 @@ public class Article {
     private String content;
 
     @CreatedBy
-    @Column(name = "view", nullable = false)
-    private int view = 0;
+    @Column(name = "like", nullable = false)
+    private int like = 0;
 
     @CreatedDate
     @Column(name = "created_at")
@@ -53,7 +53,7 @@ public class Article {
         this.content = content;
     }
 
-    public void increaseView() {
-        this.view++;
+    public void increaseLike() {
+        this.like++;
     }
 }

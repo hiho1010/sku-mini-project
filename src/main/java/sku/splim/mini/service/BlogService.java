@@ -51,6 +51,15 @@ public class BlogService {
         return article;
     }
 
+    @Transactional
+    public Article getLikeCount(long id) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+
+        article.increaseLikeCount();
+        return article;
+    }
+
     public List<Article> searchArticles(String keyword) {
         return blogRepository.findAll(keyword);
     }

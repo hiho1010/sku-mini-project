@@ -26,6 +26,9 @@ public class Article {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "likeCount", nullable = false)
+    private int likeCount = 0;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -50,5 +53,9 @@ public class Article {
 
     public void increaseViewCount() {
         this.viewCount++;
+    }
+
+    public void increaseLikeCount() {
+        this.likeCount++;
     }
 }

@@ -1,9 +1,7 @@
 package sku.splim.mini.service;
 
-import jakarta.persistence.criteria.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import sku.splim.mini.domain.Article;
 import sku.splim.mini.dto.AddArticleRequest;
 import sku.splim.mini.dto.UpdateArticleRequest;
@@ -57,18 +55,4 @@ public class BlogService {
         return blogRepository.findAll(keyword);
     }
 
-    private Specification<Article> search(String kw){
-        return new Specification<Article>() {
-            @Override
-            public Predicate toPredicate(Root<Article> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                if (kw == null || kw.isEmpty()) {
-                    return null; // No filtering if the keyword is empty
-                }
-                query.distinct(true);
-                String pattern = "%" + kw.toLowerCase() + "%"; // Case-insensitive search
-                return cb.like(root.get("title"), pattern);
-                //return criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), pattern);
-            }
-        };
-    }
 }

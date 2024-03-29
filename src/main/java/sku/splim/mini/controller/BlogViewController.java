@@ -21,10 +21,18 @@ public class BlogViewController {
 
     @GetMapping("/articles")
     public String getArticles(Model model, @RequestParam(value="kw", defaultValue = "") String kw) {
-        List<ArticleListViewResponse> articles = blogService.findAll()
-                .stream()
-                .map(ArticleListViewResponse::new)
-                .toList();
+        List<ArticleListViewResponse> articles;
+        if (!kw.isEmpty()) {
+            articles = blogService.searchArticles(kw)
+                    .stream()
+                    .map(ArticleListViewResponse::new)
+                    .toList();
+        } else {
+            articles = blogService.findAll()
+                    .stream()
+                    .map(ArticleListViewResponse::new)
+                    .toList();
+        }
         model.addAttribute("articles", articles);
         model.addAttribute("kw", kw);
         return "articleList";

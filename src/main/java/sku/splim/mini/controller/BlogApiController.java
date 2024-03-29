@@ -1,11 +1,12 @@
-package me.shinsunyoung.springbootdeveloper.controller;
+package sku.splim.mini.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.shinsunyoung.springbootdeveloper.domain.Article;
-import me.shinsunyoung.springbootdeveloper.dto.AddArticleRequest;
-import me.shinsunyoung.springbootdeveloper.dto.ArticleResponse;
-import me.shinsunyoung.springbootdeveloper.dto.UpdateArticleRequest;
-import me.shinsunyoung.springbootdeveloper.service.BlogService;
+import org.springframework.stereotype.Service;
+import sku.splim.mini.domain.Article;
+import sku.splim.mini.dto.AddArticleRequest;
+import sku.splim.mini.dto.ArticleResponse;
+import sku.splim.mini.dto.UpdateArticleRequest;
+import sku.splim.mini.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -2,10 +2,17 @@ package sku.splim.mini.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import me.shinsunyoung.springbootdeveloper.domain.Article;
 import me.shinsunyoung.springbootdeveloper.dto.AddArticleRequest;
 import me.shinsunyoung.springbootdeveloper.dto.UpdateArticleRequest;
 import me.shinsunyoung.springbootdeveloper.repository.BlogRepository;
+=======
+import sku.splim.mini.domain.Article;
+import sku.splim.mini.dto.AddArticleRequest;
+import sku.splim.mini.dto.UpdateArticleRequest;
+import sku.splim.mini.repository.BlogRepository;
+>>>>>>> feature
 import org.springframework.stereotype.Service;
 
 import java.util.List;
